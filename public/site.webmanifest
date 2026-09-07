@@ -1,0 +1,18 @@
+{
+  "name": "Ochre",
+  "short_name": "Ochre",
+  "description": "AI & Full-Stack Software Studio — voice assistants, autonomous agents, and RAG systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6eddc",
+  "theme_color": "#f6eddc",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -124,12 +124,24 @@ function Hamburger({ open }) {
   )
 }
 
+function SkipLink() {
+  return (
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+    >
+      Skip to main content
+    </a>
+  )
+}
+
 function Header({ active }) {
   const [open, setOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
+      <SkipLink />
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8" aria-label="Primary">
         <Logo />
 
         <div className="hidden items-center gap-1 md:flex">
@@ -137,6 +149,7 @@ function Header({ active }) {
             <a
               key={item.id}
               href={`#${item.id}`}
+              aria-current={active === item.id ? 'true' : undefined}
               className={`rounded-md px-3 py-2 text-sm transition-colors ${
                 active === item.id
                   ? 'text-foreground'
@@ -1101,7 +1114,7 @@ function Showcase() {
         <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
           Selected work
         </h2>
-        <div className="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <article className="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div data-reveal className="reveal">
             <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground">
               Intelligent Voice Assistant
@@ -1134,9 +1147,9 @@ function Showcase() {
           <div data-reveal className="reveal flex justify-center">
             <VoiceAssistantDemo />
           </div>
-        </div>
+        </article>
 
-        <div className="mt-20 grid items-center gap-12 border-t border-border pt-20 lg:grid-cols-2 lg:gap-16">
+        <article className="mt-20 grid items-center gap-12 border-t border-border pt-20 lg:grid-cols-2 lg:gap-16">
           <div data-reveal className="reveal order-2 flex justify-center lg:order-1">
             <EmailAgentDemo />
           </div>
@@ -1168,9 +1181,9 @@ function Showcase() {
               Automate your inbox
             </a>
           </div>
-        </div>
+        </article>
 
-        <div className="mt-20 grid items-center gap-12 border-t border-border pt-20 lg:grid-cols-2 lg:gap-16">
+        <article className="mt-20 grid items-center gap-12 border-t border-border pt-20 lg:grid-cols-2 lg:gap-16">
           <div data-reveal className="reveal">
             <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground">
               RAG system
@@ -1203,7 +1216,7 @@ function Showcase() {
           <div data-reveal className="reveal flex justify-center">
             <RagGraph />
           </div>
-        </div>
+        </article>
       </div>
     </section>
   )
@@ -1222,12 +1235,15 @@ function Contact() {
             Tell me what&apos;s slowing you down, and I&apos;ll tell you what I&apos;d do about
             it. No pitch deck, no fluff.
           </p>
-          <a
-            href="mailto:kobe824ouchao@gmail.com"
-            className="mt-8 inline-block rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90"
-          >
-            kobe824ouchao@gmail.com
-          </a>
+          <address className="not-italic">
+            <a
+              href="mailto:kobe824ouchao@gmail.com"
+              rel="noopener noreferrer"
+              className="mt-8 inline-block rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90"
+            >
+              kobe824ouchao@gmail.com
+            </a>
+          </address>
         </div>
       </div>
     </section>
@@ -1297,7 +1313,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header active={active} />
-      <main>
+      <main id="main-content">
         <Hero />
         <Business />
         <Showcase />
