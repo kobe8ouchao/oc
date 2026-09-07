@@ -1182,10 +1182,10 @@ function Contact() {
             it. No pitch deck, no fluff.
           </p>
           <a
-            href="mailto:hello@ochre.studio"
+            href="mailto:kobe824ouchao@gmail.com"
             className="mt-8 inline-block rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90"
           >
-            hello@ochre.studio
+            kobe824ouchao@gmail.com
           </a>
         </div>
       </div>
