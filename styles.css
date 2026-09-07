@@ -259,13 +259,48 @@ section[id] {
   animation: flow-x 1.6s ease-in-out infinite;
 }
 
-@keyframes node-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--primary) 0%, transparent); }
-  50% { box-shadow: 0 0 0 6px color-mix(in oklch, var(--primary) 22%, transparent); }
+@keyframes node-glow {
+  0%, 30%, 100% {
+    border-color: var(--border);
+    background-color: var(--card);
+  }
+  8%, 20% {
+    border-color: color-mix(in oklch, var(--primary) 30%, transparent);
+    background-color: color-mix(in oklch, var(--primary) 10%, transparent);
+  }
 }
 
-.node-pulse {
-  animation: node-pulse 2.4s ease-in-out infinite;
+@keyframes node-glow-icon {
+  0%, 30%, 100% {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+  8%, 20% {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+.node-glow {
+  animation: node-glow 6000ms ease-in-out infinite;
+  animation-delay: var(--light-delay, 0ms);
+}
+
+.node-glow-icon {
+  animation: node-glow-icon 6000ms ease-in-out infinite;
+  animation-delay: var(--light-delay, 0ms);
+}
+
+.flow-node {
+  animation:
+    bubble-in 0.45s ease-out both,
+    node-glow 6000ms ease-in-out infinite;
+  animation-delay: var(--enter-delay, 0ms), var(--light-delay, 0ms);
+}
+
+.flow-node-static {
+  animation: bubble-in 0.45s ease-out both;
+  animation-delay: var(--enter-delay, 0ms);
 }
 
 @keyframes graph-float {

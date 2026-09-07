@@ -9,14 +9,36 @@ const NAV = [
 
 const CAPABILITIES = [
   {
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="6" y="6" width="12" height="12" rx="2" />
+        <rect x="9.5" y="9.5" width="5" height="5" rx="1" />
+        <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+      </svg>
+    ),
     title: 'AI for the enterprise',
     body: 'Models are only worth anything when they slot into a real workflow. I wire them into your systems with the unglamorous parts handled — evaluation, guardrails, and logs you can actually read.',
   },
   {
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 3l9 5-9 5-9-5 9-5z" />
+        <path d="M3 13l9 5 9-5" />
+        <path d="M3 17l9 5 9-5" />
+      </svg>
+    ),
     title: 'Full-stack development',
     body: 'From the database schema to the last pixel of the interface. I ship web apps that load fast, work on any screen, and stay easy for your team to maintain.',
   },
   {
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="5" y="8" width="14" height="10" rx="2" />
+        <path d="M12 8V5" />
+        <circle cx="12" cy="3" r="1" />
+        <path d="M9 13h.01M15 13h.01" />
+      </svg>
+    ),
     title: 'Agent building',
     body: 'Small, focused assistants that finish a job end to end — reading your inbox, drafting the reply, filing the report — with a person kept in the loop.',
   },
@@ -297,11 +319,9 @@ function Business() {
               key={c.title}
               data-reveal
               style={{ transitionDelay: `${i * 80}ms` }}
-              className="reveal rounded-xl border border-border bg-card p-6"
+              className="reveal rounded-xl bg-card p-6 shadow-md transition-shadow duration-300 hover:shadow-lg"
             >
-              <span className="font-display text-2xl font-semibold text-primary">
-                0{i + 1}
-              </span>
+              <div className="text-primary">{c.icon}</div>
               <h3 className="mt-4 font-display text-2xl font-semibold text-foreground">
                 {c.title}
               </h3>
@@ -393,24 +413,36 @@ const EMAIL_TEAMS = [
   { name: 'Support', icon: <ChatIcon /> },
 ]
 
-function FlowNode({ icon, title, sub, tone = 'neutral', delay = 0 }) {
+function FlowNode({ icon, title, sub, tone = 'neutral', delay = 0, lightDelay = 0, badge }) {
   const isPrimary = tone === 'primary'
   return (
     <div
-      className={`bubble-in flex items-center gap-3 rounded-xl border px-4 py-3 ${
-        isPrimary ? 'node-pulse border-primary/30 bg-primary/10' : 'border-border bg-card'
+      className={`flex items-center gap-3 rounded-xl border px-4 py-3 ${
+        isPrimary ? 'flow-node-static border-primary/30 bg-primary/10' : 'flow-node border-border bg-card'
       }`}
-      style={{ animationDelay: `${delay}ms` }}
+      style={
+        isPrimary
+          ? { '--enter-delay': `${delay}ms` }
+          : { '--enter-delay': `${delay}ms`, '--light-delay': `${lightDelay}ms` }
+      }
     >
       <span
         className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
-          isPrimary ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground'
+          isPrimary ? 'bg-primary text-primary-foreground' : 'node-glow-icon bg-muted text-foreground'
         }`}
+        style={isPrimary ? undefined : { '--light-delay': `${lightDelay}ms` }}
       >
         {icon}
       </span>
       <span>
-        <span className="block text-sm font-semibold leading-tight text-foreground">{title}</span>
+        <span className="flex items-center gap-2 text-sm font-semibold leading-tight text-foreground">
+          {title}
+          {badge && (
+            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+              {badge}
+            </span>
+          )}
+        </span>
         <span className="block text-xs text-muted-foreground">{sub}</span>
       </span>
     </div>
@@ -447,24 +479,33 @@ function EmailAgentDemo() {
       </div>
 
       <div className="flex flex-col">
-        <FlowNode delay={0} icon={<InboxIcon />} title="Inbox" sub="New mail arrives" />
+        <FlowNode delay={0} lightDelay={0} icon={<InboxIcon />} title="Inbox" sub="New mail arrives" />
         <FlowLine />
-        <FlowNode delay={120} icon={<SearchIcon />} title="Read & analyze" sub="Intent, urgency & sentiment" />
+        <FlowNode delay={120} lightDelay={1000} icon={<SearchIcon />} title="Read & analyze" sub="Intent, urgency & sentiment" />
         <FlowLine />
-        <FlowNode delay={240} tone="primary" icon={<BranchIcon />} title="Classify & route" sub="Agent decides the team" />
+        <FlowNode delay={240} lightDelay={2000} badge="LLM Agent" icon={<BranchIcon />} title="Classify & route" sub="Agent decides the team" />
         <FlowLine />
         <FlowBranch />
         <div className="grid grid-cols-3 gap-2.5">
           {EMAIL_TEAMS.map((t) => (
-            <div key={t.name} className="flex flex-col items-center gap-1 rounded-lg border border-border bg-card px-1 py-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-muted text-foreground">{t.icon}</span>
+            <div
+              key={t.name}
+              className="node-glow flex flex-col items-center gap-1 rounded-lg border border-border bg-card px-1 py-2"
+              style={{ '--light-delay': '3000ms' }}
+            >
+              <span
+                className="node-glow-icon flex h-7 w-7 items-center justify-center rounded-md bg-muted text-foreground"
+                style={{ '--light-delay': '3000ms' }}
+              >
+                {t.icon}
+              </span>
               <span className="text-xs font-medium text-foreground">{t.name}</span>
             </div>
           ))}
         </div>
         <FlowBranch />
         <FlowLine />
-        <FlowNode delay={360} icon={<DocIcon />} title="Draft reply" sub="Ready for human review" />
+        <FlowNode delay={360} lightDelay={4000} icon={<DocIcon />} title="Draft reply" sub="Ready for human review" />
       </div>
     </div>
   )
