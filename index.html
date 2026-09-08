@@ -13,8 +13,10 @@
       name="keywords"
       content="AI, LLM, OpenAI, Anthropic, Codex, Claude Code, open code, OpenClaw, Grokbot, AI agents, voice assistant, RAG, full-stack development"
     />
-    <meta name="theme-color" content="#f6eddc" />
+    <meta name="theme-color" content="#f6eddc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#2a221b" media="(prefers-color-scheme: dark)" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href="https://ochre.studio/" />
 
     <!-- Open Graph / Facebook -->
@@ -25,6 +27,7 @@
     <meta property="og:image" content="https://ochre.studio/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ochre logo and tagline on a warm ochre background" />
     <meta property="og:site_name" content="Ochre" />
     <meta property="og:locale" content="en_US" />
 
@@ -34,6 +37,7 @@
     <meta name="twitter:title" content="Ochre — AI & Full-Stack Software Studio" />
     <meta name="twitter:description" content="Independent software studio for full-stack products, practical AI and LLM agents, voice assistants, RAG systems, and workflow automation." />
     <meta name="twitter:image" content="https://ochre.studio/og-image.png" />
+    <meta name="twitter:image:alt" content="Ochre logo and tagline on a warm ochre background" />
 
     <!-- Apple / Mobile -->
     <meta name="apple-mobile-web-app-title" content="Ochre" />
@@ -59,7 +63,7 @@
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "Organization",
+            "@type": ["Organization", "ProfessionalService"],
             "@id": "https://ochre.studio/#organization",
             "name": "Ochre",
             "alternateName": "Ochre Studio",
@@ -68,7 +72,19 @@
               "@type": "ImageObject",
               "url": "https://ochre.studio/favicon.svg"
             },
+            "image": "https://ochre.studio/og-image.png",
             "description": "Independent software studio for full-stack products, practical AI and LLM agents, voice assistants, RAG systems, and workflow automation.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Global"
+            },
+            "knowsAbout": ["AI agents", "LLM integration", "voice assistants", "RAG systems", "full-stack development", "workflow automation"],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "business inquiries",
+              "email": "kobe824ouchao@gmail.com",
+              "availableLanguage": ["English", "Chinese"]
+            },
             "sameAs": []
           },
           {
@@ -79,7 +95,15 @@
             "publisher": {
               "@id": "https://ochre.studio/#organization"
             },
-            "inLanguage": "en"
+            "inLanguage": "en",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://ochre.studio/?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
           },
           {
             "@type": "WebPage",
@@ -92,6 +116,10 @@
             "about": {
               "@id": "https://ochre.studio/#organization"
             },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://ochre.studio/og-image.png"
+            },
             "description": "Independent software studio for full-stack products, practical AI and LLM agents, voice assistants, RAG systems, and workflow automation.",
             "inLanguage": "en"
           }
@@ -101,6 +129,28 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="font-family:'DM Sans','Segoe UI',sans-serif;max-width:600px;margin:60px auto;padding:0 24px;color:#3a2c20;">
+        <h1 style="font-size:32px;font-weight:700;margin-bottom:16px;">Ochre — AI &amp; Full-Stack Software Studio</h1>
+        <p style="font-size:18px;line-height:1.6;margin-bottom:24px;">
+          Independent software studio for full-stack products, practical AI and LLM agents,
+          voice assistants, RAG systems, and workflow automation.
+        </p>
+        <h2 style="font-size:22px;font-weight:600;margin-top:32px;margin-bottom:12px;">Capabilities</h2>
+        <ul style="font-size:16px;line-height:1.8;padding-left:20px;">
+          <li><strong>AI for the enterprise</strong> — Wire models into real workflows with evaluation, guardrails, and readable logs.</li>
+          <li><strong>Full-stack development</strong> — From database to interface, shipping apps that load fast and work on any screen.</li>
+          <li><strong>Agent building</strong> — Focused assistants that finish jobs end to end with a human kept in the loop.</li>
+        </ul>
+        <h2 style="font-size:22px;font-weight:600;margin-top:32px;margin-bottom:12px;">Contact</h2>
+        <p style="font-size:16px;line-height:1.6;">
+          <a href="mailto:kobe824ouchao@gmail.com" style="color:#b06f3c;text-decoration:none;font-weight:500;">kobe824ouchao@gmail.com</a>
+        </p>
+        <p style="font-size:14px;color:#7a6555;margin-top:40px;">
+          This site requires JavaScript for the full interactive experience. Please enable JavaScript or contact us directly.
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

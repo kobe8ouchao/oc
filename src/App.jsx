@@ -322,8 +322,8 @@ function Business() {
   return (
     <section id="business" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
-        <p className="text-sm font-medium tracking-wide text-primary">What I do</p>
-        <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">What I do</p>
+        <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
           Capabilities
         </h2>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -494,21 +494,21 @@ function EmailAgentDemo() {
       <div className="flex flex-col">
         <FlowNode delay={0} lightDelay={0} icon={<InboxIcon />} title="Inbox" sub="New mail arrives" />
         <FlowLine />
-        <FlowNode delay={120} lightDelay={1000} icon={<SearchIcon />} title="Read & analyze" sub="Intent, urgency & sentiment" />
+        <FlowNode delay={120} lightDelay={1000} badge="LLM Agent" icon={<SearchIcon />} title="Read & analyze" sub="Intent, urgency & sentiment" />
         <FlowLine />
         <FlowNode delay={240} lightDelay={2000} badge="LLM Agent" icon={<BranchIcon />} title="Classify & route" sub="Agent decides the team" />
         <FlowLine />
         <FlowBranch />
         <div className="grid grid-cols-3 gap-2.5">
-          {EMAIL_TEAMS.map((t) => (
+          {EMAIL_TEAMS.map((t, i) => (
             <div
               key={t.name}
               className="node-glow flex flex-col items-center gap-1 rounded-lg border border-border bg-card px-1 py-2"
-              style={{ '--light-delay': '3000ms' }}
+              style={{ '--light-delay': `${3000 + i * 300}ms` }}
             >
               <span
                 className="node-glow-icon flex h-7 w-7 items-center justify-center rounded-md bg-muted text-foreground"
-                style={{ '--light-delay': '3000ms' }}
+                style={{ '--light-delay': `${3000 + i * 300}ms` }}
               >
                 {t.icon}
               </span>
@@ -1110,8 +1110,8 @@ function Showcase() {
   return (
     <section id="showcase" className="border-t border-border bg-secondary/40">
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
-        <p className="text-sm font-medium tracking-wide text-primary">Showcase</p>
-        <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Showcase</p>
+        <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
           Selected work
         </h2>
         <article className="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -1227,8 +1227,8 @@ function Contact() {
     <section id="contact" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <div className="max-w-2xl">
-          <p className="text-sm font-medium tracking-wide text-primary">Contact</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Contact</p>
+          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
             Let&apos;s build something useful.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
