@@ -100,7 +100,7 @@ function Logo({ compact = false }) {
       <svg viewBox="0 0 32 32" className={`${ringSize} text-primary`} aria-hidden="true">
         <circle cx="16" cy="16" r="10.5" fill="none" stroke="currentColor" strokeWidth="4" />
       </svg>
-      <span className={wordSize}>Ochre</span>
+      <span className={wordSize}>Och</span>
     </a>
   )
 }
@@ -1031,7 +1031,7 @@ function VoiceAssistantDemo() {
                 </span>
               </span>
             </div>
-            <span className="mt-2 text-xs font-medium text-muted-foreground">Ochre Assistant</span>
+            <span className="mt-2 text-xs font-medium text-muted-foreground">Och Assistant</span>
           </div>
 
           <div className="flex flex-1 flex-col justify-end gap-2.5 px-4 pb-4">
@@ -1258,9 +1258,9 @@ function Footer() {
           <svg viewBox="0 0 32 32" className="h-4 w-4 text-primary" aria-hidden="true">
             <circle cx="16" cy="16" r="10.5" fill="none" stroke="currentColor" strokeWidth="4" />
           </svg>
-          <span className="font-display font-medium text-foreground">Ochre</span>
+          <span className="font-display font-medium text-foreground">Och</span>
         </div>
-        <p>© {new Date().getFullYear()} Ochre. Built with care.</p>
+        <p>© {new Date().getFullYear()} Och. Built with care.</p>
       </div>
     </footer>
   )

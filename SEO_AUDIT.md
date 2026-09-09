@@ -1,4 +1,4 @@
-# Qiaomu SEO Audit — Ochre Studio
+# Qiaomu SEO Audit — Och Studio
 
 **审计日期：** 2026-09-08  
 **审计模式：** page（单页应用深度审计）  
